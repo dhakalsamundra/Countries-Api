@@ -1,61 +1,74 @@
 // Action types
-export const ADD_PRODUCT = 'ADD_PRODUCT'
-export const REMOVE_PRODUCT = 'REMOVE_PRODUCT'
-export const TOGGLE_DIALOG = 'TOGGLE_DIALOG'
+export const FETCH_COUNTRIES = 'FETCH_COUNTRIES'
+export const SEARCH_COUNTRIES = 'SEARCH_COUNTRIES'
+export const ADD_COUNTRY = 'ADD_COUNTRY'
+export const REMOVE_COUNTRY = 'REMOVE_COUNTRY'
+export const SORT_COUNTRIES = 'SORT_COUNTRIES'
 
-// Enum
-export enum DialogType {
-  SignIn = 'signIn',
-  SignUp = 'signUp',
-}
-
-// A product
-export type Product = {
-  id: string
+//countries
+export type Country = {
+  id?: string
+  country: string
   name: string
-  price: number
+  region: string
+  flag: string
+  population: string
+  languages: Language[]
+}
+export type Language = {
+  name: string
+}
+export type CountryDetailsProps = {
+  country: Country
+}
+export type Search = {
+  search: Country[]
 }
 
-export type AddProductAction = {
-  type: typeof ADD_PRODUCT
+export type FetchCountriesAction = {
+  type: typeof FETCH_COUNTRIES
   payload: {
-    product: Product,
+    fetchedCountries: Country[]
   }
 }
 
-export type RemoveProductAction = {
-  type: typeof REMOVE_PRODUCT
+export type SortCountries = {
+  type: typeof SORT_COUNTRIES
+}
+
+export type AddCountryAction = {
+  type: typeof ADD_COUNTRY
   payload: {
-    product: Product,
+    addCountry: Country
   }
 }
 
-export type ToggleDialogAction = {
-  type: typeof TOGGLE_DIALOG
+export type RemoveCountryAction = {
+  type: typeof REMOVE_COUNTRY
   payload: {
-    dialog: DialogType,
+    removeCountry: Country
   }
 }
-
-export type UiActions = ToggleDialogAction
+export type SearchCountriesAction = {
+  type: typeof SEARCH_COUNTRIES
+  payload: {
+    searchTerm: string
+  }
+}
 
 // Use this union in reducer
-export type ProductActions =
-  | AddProductAction
-  | RemoveProductAction
+export type CountryActions =
+  | AddCountryAction
+  | RemoveCountryAction
+  | FetchCountriesAction
+  | SearchCountriesAction
+  | SortCountries
 
-export type ProductState = {
-  inCart: Product[]
+export type ListOfCountriesCart = {
+  list: Country[]
+  filteredList: Country[]
+  inCart: Country[]
 }
-
-// Using dynamic keys from an enum
-export type UiState = {
-  dialogOpen: {
-    [key in DialogType]?: boolean
-  }
-}
-
 export type AppState = {
-  product: ProductState,
-  ui: UiState,
+  countries: ListOfCountriesCart
 }
