@@ -1,0 +1,9 @@
+.country {
+  margin-top: 80px;
+  &__labels {
+    display: grid;
+  }
+  &__flag {
+    width: auto;
+  }
+}
