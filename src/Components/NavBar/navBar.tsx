@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react'
+import React, { useContext, useState, useEffect } from 'react'
 import { useDispatch, useSelector } from 'react-redux'
 import clsx from 'clsx'
 import Drawer from '@material-ui/core/Drawer'
@@ -11,17 +11,21 @@ import IconButton from '@material-ui/core/IconButton'
 import MenuIcon from '@material-ui/icons/Menu'
 import Badge from '@material-ui/core/Badge'
 import ArrowBackIcon from '@material-ui/icons/ArrowBack'
+import ListItem from '@material-ui/core/ListItem'
+import ListItemText from '@material-ui/core/ListItemText'
 import SearchIcon from '@material-ui/icons/Search'
 import InputBase from '@material-ui/core/InputBase'
 import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
 import { searchCountries } from '../../redux/actions/'
+import themeContext, { themes } from '../../themeContext'
 import Cart from '../Cart'
 import useStyles from './style'
 import { AppState } from '../../types'
 
 export default function NavBar() {
   const classes = useStyles()
+  const { theme, switchTheme } = useContext(themeContext)
   const dispatch = useDispatch()
   const cartItems = useSelector((state: AppState) => state.countries.inCart)
 
@@ -54,7 +58,13 @@ export default function NavBar() {
 
   return (
     <div className={classes.root}>
-      <AppBar>
+      <AppBar
+        style={{ backgroundColor: theme.code }}
+        position="fixed"
+        className={clsx(classes.appBar, {
+          [classes.appBarShift]: open,
+        })}
+      >
         <Toolbar>
           <IconButton
             color="inherit"
@@ -114,9 +124,24 @@ export default function NavBar() {
           <IconButton onClick={handleDrawerClose}>
             <ArrowBackIcon />
           </IconButton>
+          <h3>Switch Theme</h3>
         </div>
         <Divider />
-        <List></List>
+        <List>
+          {[themes.primary, themes.secondary, themes.third].map(
+            (item, code) => (
+              <ListItem
+                button
+                key={item.code}
+                onClick={() => {
+                  switchTheme(item.code)
+                }}
+              >
+                <ListItemText primary={item.color} />
+              </ListItem>
+            )
+          )}
+        </List>
         <Divider />
       </Drawer>
     </div>
