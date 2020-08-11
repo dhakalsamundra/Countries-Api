@@ -6,6 +6,7 @@ import DeleteIcon from '@material-ui/icons/Delete'
 
 import { removeCountry } from '../../redux/actions'
 import { AppState, Country } from '../../types'
+import './cart.scss'
 
 export default function Cart() {
   const cartItems = useSelector((state: AppState) => state.countries.inCart)
