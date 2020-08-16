@@ -1,7 +1,21 @@
 import { Dispatch } from 'redux'
-import { FETCH_COUNTRIES, CountryActions, Country } from '../../types'
 
+import {
+  ADD_COUNTRY,
+  Country,
+  FETCH_COUNTRIES,
+  CountryActions,
 
+} from '../../types'
+
+export function addCountry(addCountry: Country): CountryActions {
+  return {
+    type: ADD_COUNTRY,
+    payload: {
+      addCountry,
+    },
+  }
+}
 
 export function fetchedCountry(fetchedCountry: Country[]): CountryActions {
   return {
@@ -11,6 +25,7 @@ export function fetchedCountry(fetchedCountry: Country[]): CountryActions {
     },
   }
 }
+
 
 // An Example of Async action processed by redux-thunk middleware
 export function fetchCountry() {
