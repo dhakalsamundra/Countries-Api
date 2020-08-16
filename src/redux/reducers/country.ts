@@ -2,6 +2,7 @@ import {
   ListOfCountriesCart,
   CountryActions,
   FETCH_COUNTRIES,
+  ADD_COUNTRY,
 } from '../../types'
 
 export default function country(
@@ -22,6 +23,14 @@ export default function country(
       filteredList: [...fetchedCountries],
     }
   }
+  case ADD_COUNTRY: {
+    const { addCountry } = action.payload
+    return {
+      ...state,
+      inCart: [...state.inCart, addCountry],
+    }
+  }
+
 
   default:
     return state
