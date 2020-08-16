@@ -3,6 +3,7 @@ import {
   CountryActions,
   FETCH_COUNTRIES,
   ADD_COUNTRY,
+  SORT_COUNTRIES,
   REMOVE_COUNTRY,
 } from '../../types'
 
@@ -43,6 +44,14 @@ export default function country(
     return state
   }
 
+  case SORT_COUNTRIES: {
+    const descendingOrder = state.filteredList.reverse()
+    return {
+      ...state,
+      filteredList: [...descendingOrder],
+    }
+  }
+  
   default:
     return state
   }
