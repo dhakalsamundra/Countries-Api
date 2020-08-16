@@ -5,6 +5,7 @@ import {
   Country,
   FETCH_COUNTRIES,
   CountryActions,
+  SORT_COUNTRIES,
 
 } from '../../types'
 
@@ -25,6 +26,13 @@ export function fetchedCountry(fetchedCountry: Country[]): CountryActions {
     },
   }
 }
+
+export function SortCountries(): CountryActions {
+  return {
+    type: SORT_COUNTRIES,
+  }
+}
+
 
 
 // An Example of Async action processed by redux-thunk middleware
