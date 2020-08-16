@@ -5,7 +5,7 @@ import {
   Country,
   FETCH_COUNTRIES,
   CountryActions,
-  SORT_COUNTRIES,
+  REMOVE_COUNTRY,
 
 } from '../../types'
 
@@ -33,6 +33,16 @@ export function SortCountries(): CountryActions {
   }
 }
 
+
+
+export function removeCountry(removeCountry: Country): CountryActions {
+  return {
+    type: REMOVE_COUNTRY,
+    payload: {
+      removeCountry,
+    },
+  }
+}
 
 
 // An Example of Async action processed by redux-thunk middleware
