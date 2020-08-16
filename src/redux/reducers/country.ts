@@ -3,6 +3,7 @@ import {
   CountryActions,
   FETCH_COUNTRIES,
   ADD_COUNTRY,
+  REMOVE_COUNTRY,
 } from '../../types'
 
 export default function country(
@@ -31,6 +32,16 @@ export default function country(
     }
   }
 
+  case REMOVE_COUNTRY: {
+    const { removeCountry } = action.payload
+    const index = state.inCart.findIndex((p) => p.name === removeCountry.name)
+    if (index >= 0) {
+      //removing the one country in that index
+      state.inCart.splice(index, 1)
+      return { ...state, inCart: [...state.inCart] }
+    }
+    return state
+  }
 
   default:
     return state
