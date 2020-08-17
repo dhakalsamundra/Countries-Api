@@ -39,7 +39,6 @@ const CountryLists = () => {
   return (
     <div>
       <div>
-        <h1>Countries Data.</h1>
       </div>
       <TableHead className="country__labels">
         <TableRow>
