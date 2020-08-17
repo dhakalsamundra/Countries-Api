@@ -19,6 +19,7 @@ import AddShoppingCartIcon from '@material-ui/icons/AddShoppingCart'
 
 import { searchCountries } from '../../redux/actions/'
 import themeContext, { themes } from '../../themeContext'
+import CountryLists from '../Country/country' 
 import Cart from '../Cart'
 import useStyles from './style'
 import { AppState } from '../../types'
@@ -144,6 +145,12 @@ export default function NavBar() {
         </List>
         <Divider />
       </Drawer>
+      <main className={clsx(classes.content, {
+        [classes.contentShift]: open,
+      })}>
+        <br></br>
+        <CountryLists /> 
+      </main>
     </div>
   )
 }
