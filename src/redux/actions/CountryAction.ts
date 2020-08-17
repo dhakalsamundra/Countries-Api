@@ -7,6 +7,7 @@ import {
   CountryActions,
   SEARCH_COUNTRIES,
   REMOVE_COUNTRY,
+  SORT_COUNTRIES,
 
 } from '../../types'
 

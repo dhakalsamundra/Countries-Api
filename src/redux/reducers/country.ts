@@ -3,6 +3,7 @@ import {
   CountryActions,
   FETCH_COUNTRIES,
   ADD_COUNTRY,
+  SEARCH_COUNTRIES,
   SORT_COUNTRIES,
   REMOVE_COUNTRY,
 } from '../../types'
@@ -52,6 +53,17 @@ export default function country(
     }
   }
   
+  case SEARCH_COUNTRIES: {
+    const { searchTerm } = action.payload
+    const searchedData = state.list.filter((element: { name: string }) =>
+      element.name.toLowerCase().includes(searchTerm.toLowerCase())
+    )
+    return {
+      ...state,
+      filteredList: [...searchedData],
+    }
+  }
+
   default:
     return state
   }
